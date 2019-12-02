@@ -15,16 +15,18 @@ const initialTodos = [
   }
 ];
 
+const initialTodoValues = {
+  task: "",
+  id: "",
+  completed: false
+};
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       todos: initialTodos,
-      newTodo: {
-        task: "",
-        id: "",
-        completed: false
-      }
+      newTodo: initialTodoValues
     };
   }
 
@@ -40,9 +42,15 @@ class App extends React.Component {
 
   addTodo = event => {
     event.preventDefault();
-    this.setState(currentState => ({
-      todos: [...currentState.todos, currentState.newTodo]
-    }));
+    
+    if (this.state.newTodo.task.length >= 3) {
+      this.setState(currentState => ({
+        todos: [...currentState.todos, currentState.newTodo],
+        newTodo: initialTodoValues
+      }));
+    } else {
+      alert("Please input a new todo");
+    }
   };
 
   render() {
