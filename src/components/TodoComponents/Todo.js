@@ -1,14 +1,20 @@
-import React from 'react';
+import React from "react";
+import "./Todo.css"
 
 export default class Todo extends React.Component {
-
   render() {
-    const {todo} = this.props;
-
+    const { todo, toggleCompletion } = this.props;
+    // console.log(this)
     return (
       <>
-        <h3>{todo.task}</h3>
+        <h3
+          className={todo.completed ? "completed" : "notCompleted"}
+          onClick={() => toggleCompletion(todo.id)}
+          id={todo.id}
+        >
+          {todo.task}
+        </h3>
       </>
-    )
+    );
   }
 }
