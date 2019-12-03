@@ -55,15 +55,14 @@ class App extends React.Component {
 
   toggleCompletion = id => {
     // debugger;
-    this.setState({
-      todos: this.state.todos.map(todo => {
-        if (todo.id == id) {
+    this.setState(currentState => ({
+      todos: currentState.todos.map(todo => {
+        if (todo.id === id) {
           todo.completed = !todo.completed;
         }
         return todo;
       })
-    });
-    
+    }))
   };
 
   render() {
